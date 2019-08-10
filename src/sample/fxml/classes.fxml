@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Tooltip?>
+<AnchorPane prefHeight="641.0" prefWidth="921.0" style="-fx-background-color: #aaaaaa;" stylesheets="@/sample/style/style.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Classes">
+    <children>
+        <Pane layoutY="-6.0" prefHeight="152.0" prefWidth="921.0" style="-fx-background-color: aa2b2b;"
+              AnchorPane.bottomAnchor="489.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="394.0" layoutY="31.0" prefHeight="45.0" prefWidth="133.0" text="Classes" textFill="WHITE">
+                    <font>
+                        <Font name="Chilanka Regular" size="22.0" />
+                    </font>
+                </Label>
+                <Label layoutX="370.0" layoutY="84.0" prefHeight="30.0" prefWidth="157.0" text="School Management System" textFill="WHITE">
+                    <font>
+                        <Font size="11.0" />
+                    </font></Label>
+                <TextField layoutX="697.0" prefHeight="37.0" prefWidth="224.0" promptText="Search"
+                           style="-fx-background-radius: 30px;" onKeyPressed="#search" fx:id="searchB"/>
+                <Button prefHeight="37.0" prefWidth="40" alignment="CENTER_RIGHT" style="-fx-background-color: #aa2b2b"
+                        onAction="#back">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView fill="white" glyphName="ARROW_LEFT" size="50" />
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Go Back"/>
+                    </tooltip>
+                </Button>
+            </children>
+        </Pane>
+
+        <!--      TableView     -->
+        <TableView fx:id="classes_table" layoutX="4.0" layoutY="161.0" prefHeight="472.0" prefWidth="609.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="307.0" AnchorPane.topAnchor="160.0">
+            <columns>
+                <TableColumn fx:id="Id" prefWidth="75.0" sortable="false" text="ID" />
+                <TableColumn fx:id="classN" prefWidth="287.0" sortable="false" text="Class Name" />
+                <TableColumn fx:id="capacity" prefWidth="246.0" sortable="false" text="Number Of Student" />
+            </columns>
+        </TableView>
+
+        <Pane layoutX="638.0" layoutY="160.0" prefHeight="476.0" prefWidth="289.0" styleClass="sPane" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="632.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
+            <children>
+                <Label alignment="CENTER" layoutX="40.0" layoutY="14.0" prefHeight="94.0" prefWidth="210.0" text="Administration Tools">
+                    <font>
+                        <Font name="Loma Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Button alignment="CENTER" layoutX="33.0" layoutY="142.0" onAction="#addClass" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: #eacbdf;" text="Add">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="33.0" layoutY="232.0" onAction="#delete" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: #eacbdf;" text="Delete">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="33.0" layoutY="327.0" onAction="#edit" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: #eacbdf;" text="Edit">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button alignment="CENTER" layoutX="33.0" layoutY="417.0" onAction="#reload" prefHeight="45.0" prefWidth="224.0" style="-fx-background-color: #eacbdf;" text="Reload Data">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

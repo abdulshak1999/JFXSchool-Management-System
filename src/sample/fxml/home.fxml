@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<AnchorPane prefHeight="582.0" prefWidth="747.0" style="-fx-background-color: #aaaaaa;"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+   <children>
+      <Pane layoutX="47.0" layoutY="8.0" prefHeight="169.0" prefWidth="747.0" style="-fx-background-color: #aa2b2b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="257.0" layoutY="14.0" prefHeight="53.0" prefWidth="233.0" text="SMART HEADMASTER" textFill="WHITE">
+               <font>
+                  <Font name="Chilanka Regular" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="294.0" layoutY="85.0" prefHeight="34.0" prefWidth="160.0" text="School Management System" textFill="WHITE">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox layoutX="53.0" layoutY="210.0" prefHeight="358.0" prefWidth="642.0" spacing="15.0">
+         <children>
+            <HBox prefHeight="160.0" prefWidth="642.0" spacing="15.0">
+               <children>
+                  <Button contentDisplay="TOP" prefHeight="176.0" prefWidth="205.0"
+                          style="-fx-background-color: white;" text="Dashboard" onAction="#dashboard">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="HOME" size="50" />
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="185.0" prefWidth="204.0"
+                          style="-fx-background-color: white;" text="Students" onAction="#students">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="GROUP" size="50" />
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="215.0" layoutY="10.0" mnemonicParsing="false" prefHeight="174.0"
+                          prefWidth="205.0" style="-fx-background-color: white;" text="Classes" onAction="#classes">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="INDENT" size="50" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="160.0" prefWidth="642.0" spacing="15.0">
+               <children>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="176.0" prefWidth="205.0"
+                          style="-fx-background-color: white;" text="Update" onAction="#update">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="EXCHANGE" size="50" />
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="188.0"
+                          prefWidth="204.0" style="-fx-background-color: white;" text="Settings" onAction="#settings">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="SLIDERS" size="90" />
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="215.0" layoutY="10.0" mnemonicParsing="false" prefHeight="176.0"
+                          prefWidth="205.0" style="-fx-background-color: white;" text="Close" onAction="#exit">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="POWER_OFF" size="90" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
