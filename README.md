@@ -1,5 +1,5 @@
 # School_Management_System
-	simple for managing schools programmed by javafx
+	simple app for managing schools programmed by javafx
 
 # Screenshots
 
