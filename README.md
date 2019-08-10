@@ -1,7 +1,7 @@
-#School_Management_System
+# School_Management_System
 	simple for managing schools programmed by javafx
 
-#Screenshots
+# Screenshots
 
 <img src="school1.png"/>
 <img src="school2.png"/>
