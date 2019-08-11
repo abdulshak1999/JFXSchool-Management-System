@@ -4,11 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.*;
 
@@ -103,10 +109,14 @@ public class Classes {
     @FXML
     public void edit() throws Exception {
         if(classes_table.getSelectionModel().getSelectedItem() != null) {
-            loadEditStage();
             id = classes_table.getSelectionModel().getSelectedItem().getId();
             name = classes_table.getSelectionModel().getSelectedItem().getName();
             num = classes_table.getSelectionModel().getSelectedItem().getNum();
+            Edit edit = new Edit(id,name,num);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(edit));
+            stage.initOwner(Controller.students_stage);
+            stage.show();
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Edit");
@@ -116,19 +126,6 @@ public class Classes {
             alert.setHeaderText("");
             alert.show();
         }
-    }
-
-    private void loadEditStage() throws Exception{
-        edit_stage = new Stage();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/sample/fxml/edit_class.fxml"));
-        loader.load();
-        Parent root = loader.getRoot();
-        Scene scene = new Scene(root);
-        edit_stage.setScene(scene);
-        edit_stage.setResizable(false);
-        edit_stage.initOwner(Controller.students_stage);
-        edit_stage.show();
     }
 
     @FXML
@@ -146,4 +143,76 @@ public class Classes {
     public void search(KeyEvent event) {
         key += event.getText();
     }
+
+    class Edit extends AnchorPane {
+
+        public Edit(Integer id,String name,Long num) {
+            drawScreen(id,name,num);
+        }
+
+        private void drawScreen(Integer id,String name,Long num) {
+            Label lName = new Label("Name");
+            Label lCapacity = new Label("Capacity");
+            Label msg = new Label();
+
+            TextField tName = new TextField(name);
+            TextField tCapacity = new TextField(num+"");
+
+            Button add = new Button("Edit");
+            Button cancel = new Button("Cancel");
+            add.setOnAction(event -> {
+                if((!tCapacity.getText().isEmpty()&&!tCapacity.getText().trim().isEmpty())&&
+                        (!tName.getText().isEmpty()&&!tName.getText().trim().isEmpty())) {
+                    try (Connection connection = sample.CDBConnection.connect()) {
+                        PreparedStatement ps = connection.prepareStatement("UPDATE classes SET name=?,num=? WHERE id = ?");
+                        ps.setString(1, tName.getText());
+                        ps.setInt(2,Integer.parseInt(tCapacity.getText()));
+                        ps.setInt(3,id);
+                        ps.execute();
+                        msg.setTextFill(Color.GREEN);
+                        msg.setText(name + " is edited to " + tName.getText());
+                    }catch (SQLException | NullPointerException e) {
+                        System.out.println(e.getMessage());
+                    }catch (NumberFormatException e) {
+                        msg.setTextFill(Color.RED);
+                        msg.setText("Type a number in class field");
+                    }
+                }else {
+                    msg.setTextFill(Color.RED);
+                    msg.setText("Fields can't be empty");
+                }
+            });
+
+            HBox hName = new HBox(lName,tName);
+            HBox hCapacity = new HBox(lCapacity,tCapacity);
+            HBox hControle = new HBox(add,cancel);
+            VBox vBox = new VBox(hName,hCapacity,msg,hControle);
+            hName.setAlignment(Pos.CENTER);
+            hCapacity.setAlignment(Pos.CENTER);
+            hControle.setAlignment(Pos.CENTER);
+
+            lName.setFont(Font.font("System bold",20.0));
+            lCapacity.setFont(Font.font("System bold",20.0));
+            tName.setFont(Font.font("System bold",20.0));
+            tCapacity.setFont(Font.font("System bold",20.0));
+            add.setFont(Font.font("System bold",20.0));
+            cancel.setFont(Font.font("System bold",20.0));
+            msg.setFont(Font.font("System bold",20.0));
+
+            hName.setSpacing(25.0);
+            hCapacity.setSpacing(5.0);
+            hControle.setSpacing(30.0);
+
+            AnchorPane.setLeftAnchor(vBox,5.0);
+            AnchorPane.setRightAnchor(vBox,5.0);
+            AnchorPane.setTopAnchor(vBox,5.0);
+            AnchorPane.setBottomAnchor(vBox,5.0);
+            vBox.setSpacing(10.0);
+            vBox.setAlignment(Pos.CENTER);
+            getChildren().add(vBox);
+            setPrefWidth(637.0);
+            getStylesheets().add(this.getClass().getResource("/sample/style/style.css").toExternalForm());
+        }
+    }
 }
+
